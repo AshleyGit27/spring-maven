@@ -1,19 +1,13 @@
-# Utilisez une image de base avec Java 
+# Étape 1 : Build avec Maven
+FROM maven:3.9-eclipse-temurin-17 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin:17-jdk 
-
-# Définir le répertoire de travail dans le conteneur 
-
-WORKDIR /app 
-
-# Copier le fichier jar généré dans le conteneur 
-
-COPY target/*.jar app.jar 
-
-# Exposer le port sur lequel Spring Boot écoute 
-
-EXPOSE 8080 
-
-# Commande pour lancer l'application Spring Boot 
-
-ENTRYPOINT ["java", "-jar", "/app/docker-demo.jar"] 
+# Étape 2 : Image finale
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
