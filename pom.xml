@@ -60,7 +60,7 @@
 		<snapshotRepository>
 			<id>nexus</id>
 			<name>Nexus Snapshot Repository</name>
-			<url>${nexus.url}/repository/spring-releases/</url>
+			<url>${nexus.url}/repository/spring-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<build>
