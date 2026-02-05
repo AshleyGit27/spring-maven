@@ -1,0 +1,14 @@
+# Ignorer les fichiers inutiles pour Docker
+.git
+.github
+*.md
+.gitignore
+.mvn
+mvnw
+mvnw.cmd
+target/classes
+target/test-classes
+target/maven-status
+target/maven-archiver
+src
+pom.xml
