@@ -32,6 +32,8 @@
 		<java.version>17</java.version>
 		<sonar.organization>ashleygit27</sonar.organization>
 		<sonar.projectKey>springboot-devsecops</sonar.projectKey>
+		<!-- URL Nexus dynamique via variable d'environnement -->
+		<nexus.url>${env.NEXUS_URL}</nexus.url>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -53,12 +55,12 @@
 		<repository>
 			<id>nexus</id>
 			<name>Nexus Release Repository</name>
-			<url>http://localhost:8081/repository/spring-releases/</url>
+			<url>${nexus.url}/repository/spring-releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>nexus</id>
 			<name>Nexus Snapshot Repository</name>
-			<url>http://localhost:8081/repository/spring-releases/</url>
+			<url>${nexus.url}/repository/spring-releases/</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<build>
